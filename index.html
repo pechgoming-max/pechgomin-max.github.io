@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PechHost – Ücretsiz Web Hosting</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3fb;--surface:#fff;--ink:#12204a;--muted:#55638a;--accent:#2f4bff;--on-accent:#fff;--sun:#ffd84d;--line:#cfd9ee;--ok:#0a7d4f;--bad:#c2331f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1530;--surface:#172146;--ink:#eaf0ff;--muted:#9fb0dd;--accent:#7f93ff;--on-accent:#0e1530;--line:#2a3766;--ok:#53d69a;--bad:#ff8a78;color-scheme:dark}}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:800;font-size:1.35rem;letter-spacing:-.02em;color:inherit;text-decoration:none}
+.logo span{background:var(--sun);color:#12204a;padding:0 .3em;border-radius:6px;margin-left:2px}
+nav a.btn-s{color:var(--ink);text-decoration:none;font-weight:600;border:2px solid var(--line);padding:8px 16px;border-radius:999px}
+nav a.btn-s:hover{border-color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.hero{padding:56px 0 72px}
+h1{font-size:clamp(2.6rem,8vw,5.4rem);line-height:.98;letter-spacing:-.04em;margin:0 0 20px;font-weight:800;max-width:12ch}
+.hero p.lead{font-size:1.2rem;color:var(--muted);max-width:46ch;margin:0 0 36px}
+.claim{display:flex;flex-wrap:wrap;gap:12px;max-width:720px}
+.field{flex:1 1 380px;display:flex;align-items:center;background:var(--surface);border:3px solid var(--ink);border-radius:16px;padding:6px 6px 6px 18px;min-width:0}
+.field:focus-within{border-color:var(--accent)}
+.field input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:1.25rem;font-weight:600;padding:10px 0;outline:0}
+.field .suffix{color:var(--muted);font-weight:600;font-size:1.25rem;padding-right:12px;white-space:nowrap}
+button.go{font:inherit;font-weight:800;font-size:1.05rem;background:var(--accent);color:var(--on-accent);border:0;border-radius:16px;padding:0 28px;min-height:56px;cursor:pointer}
+button.go:hover{filter:brightness(1.08)}
+button.go:disabled{opacity:.45;cursor:not-allowed}
+#status{min-height:1.6em;margin:14px 2px 0;font-weight:600}
+#status.ok{color:var(--ok)}#status.bad{color:var(--bad)}
+#status small{font-weight:400;color:var(--muted)}
+.url-preview{margin-top:28px;display:inline-block;background:var(--surface);border:2px dashed var(--line);border-radius:12px;padding:10px 16px;font-weight:600;max-width:100%;overflow-wrap:anywhere}
+.url-preview b{color:var(--accent)}
+section{padding:64px 0;border-top:2px solid var(--line)}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;margin:0 0 32px;line-height:1.1;max-width:20ch}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:36px}
+.feat h3{margin:0 0 6px;font-size:1.2rem}
+.feat p{margin:0;color:var(--muted)}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.plan{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:28px}
+.plan.free{border-color:var(--accent);border-width:3px}
+.plan h3{margin:0;font-size:1.3rem}
+.price{font-size:2.6rem;font-weight:800;letter-spacing:-.03em;margin:8px 0 16px}
+.price small{font-size:1rem;font-weight:400;color:var(--muted)}
+.plan ul{list-style:none;margin:0 0 24px;padding:0}
+.plan li{padding:6px 0;border-bottom:1px solid var(--line)}
+.plan li:last-child{border-bottom:0}
+.plan a{display:block;text-align:center;text-decoration:none;font-weight:800;padding:14px;border-radius:14px;border:2px solid var(--ink);color:var(--ink)}
+.plan.free a{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+footer{padding:32px 0 48px;color:var(--muted);border-top:2px solid var(--line);font-size:.95rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a class="logo" href="index.html">Pech<span>Host</span></a><a class="btn-s" href="auth.html">Giriş yap</a></nav>
+
+<header class="hero">
+<h1>Siteni dakikalar içinde yayınla.</h1>
+<p class="lead">Ücretsiz bir <b>.pechhost.io</b> adresi seç, dosyalarını yükle, siten yayında olsun.</p>
+<form class="claim" id="f" autocomplete="off">
+<label class="field" for="name"><input id="name" maxlength="30" placeholder="siteismi" aria-label="Site adı" inputmode="url" autocapitalize="off" spellcheck="false"><span class="suffix">.pechhost.io</span></label>
+<button class="go" id="btn" type="submit" disabled>Adı kontrol et</button>
+</form>
+<div id="status" role="status" aria-live="polite"></div>
+<div class="url-preview">https://<b id="pv">siteismi</b>.pechhost.io</div>
+</header>
+
+<section>
+<h2>Hosting için ihtiyacın olan her şey</h2>
+<div class="feat">
+<div><h3>Ücretsiz alt alan adı</h3><p>Her siteye kendi adresin verilir: siteismi.pechhost.io. Kredi kartı gerekmez.</p></div>
+<div><h3>Kolay yükleme</h3><p>HTML, CSS ve JS dosyalarını panele sürükle bırak; site anında yayında.</p></div>
+<div><h3>Ücretsiz SSL</h3><p>Her site otomatik olarak https ile açılır.</p></div>
+<div><h3>Kendi alan adını bağla</h3><p>Pro pakette kendi alan adını sitene bağlayabilirsin.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Paketler</h2>
+<div class="plans">
+<div class="plan free"><h3>Ücretsiz</h3><div class="price">0 ₺ <small>/ ay</small></div>
+<ul><li>siteismi.pechhost.io adresi</li><li>1 site</li><li>500 MB depolama</li><li>Ücretsiz SSL</li></ul>
+<a href="auth.html?mode=register">Ücretsiz başla</a></div>
+<div class="plan"><h3>Pro</h3><div class="price">Yakında</div>
+<ul><li>Kendi alan adın</li><li>Sınırsız site</li><li>10 GB depolama</li><li>Öncelikli destek</li></ul>
+<a href="auth.html">Haber ver</a></div>
+</div>
+</section>
+
+<footer>© 2026 PechHost. Tüm hakları saklıdır.</footer>
+</div>
+
+<script>
+(function(){
+var inp=document.getElementById('name'),btn=document.getElementById('btn'),st=document.getElementById('status'),pv=document.getElementById('pv'),f=document.getElementById('f');
+var reserved=['www','mail','admin','api','ftp','panel','pechhost','destek','support'];
+var re=/^[a-z0-9](?:[a-z0-9-]{1,28}[a-z0-9])$/;
+function clean(v){return v.toLowerCase().replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u').replace(/[^a-z0-9-]/g,'')}
+inp.addEventListener('input',function(){
+var v=clean(inp.value);inp.value=v;pv.textContent=v||'siteismi';
+btn.disabled=!v;st.textContent='';st.className='';btn.textContent='Adı kontrol et';btn.dataset.ready='';
+});
+f.addEventListener('submit',function(e){
+e.preventDefault();var v=inp.value;
+if(btn.dataset.ready===v){location.href='auth.html?mode=register&site='+encodeURIComponent(v);return}
+if(!re.test(v)){st.className='bad';st.textContent='Ad 3–30 karakter olmalı; harf, rakam ve tire kullanabilirsin.';return}
+if(reserved.indexOf(v)>-1){st.className='bad';st.innerHTML=v+'.pechhost.io alınamaz. <small>Başka bir ad dene.</small>';return}
+st.className='ok';st.innerHTML=v+'.pechhost.io müsait! <small>Kayıt olarak bu adresi al.</small>';
+btn.textContent='Kayıt ol';btn.dataset.ready=v;
+});
+})();
+</script>
+</body>
+</html>
